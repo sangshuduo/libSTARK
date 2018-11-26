@@ -1,4 +1,4 @@
-// #include "add_instance.hpp"
+#include "add_instance.hpp"
 
 // namespace simple_add{
 // namespace ACSP_FOR_ADD{

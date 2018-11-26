@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 
-// #include <protocols/protocol.hpp>
+#include <protocols/protocol.hpp>
 
 using std::cout;
 using std::endl;

@@ -10,6 +10,12 @@
 
 using namespace Algebra;
 
+namespace Add {
+    const short NUMREGS = 81; // TODO: fix number
+    short getDim(long long);
+}
+
+
 namespace simple_add{
     namespace ACSP_FOR_ADD{
         typedef struct{

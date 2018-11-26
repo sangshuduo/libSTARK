@@ -14,6 +14,7 @@ LIBSTARK_DIR			:= $(WD)/libstark
 GADGETLIB3_DIR			:= $(WD)/$(GADGETLIB3_SRC_DIR)
 TINYRAM_DIR				:= $(WD)/tinyram/stark-tinyram
 DPM_DIR					:= $(WD)/starkdpm
+ADD_DIR					:= $(WD)/simpleadd
 FFTLIB_DIR				:= $(WD)/algebra/FFT
 
 ALGEBRALIB_TESTS_DIR	:= $(WD)/algebra/algebralib-tests
@@ -63,8 +64,8 @@ stark-dpm-clean:
 		EXEDIR=$(EXE_DIR)
 
 simple-add: fft algebralib libstark
-	$(MAKE) -C $(DPM_DIR) \
-		BLDDIR=$(BLDDIR)/simple-add                       \
+	$(MAKE) -C $(ADD_DIR) \
+		BLDDIR=$(BLDDIR)/simpleadd                       \
 		EXEDIR=$(EXE_DIR) \
 		FFTINC=$(FFTLIB_DIR)/src \
 		FFTLIBLNKDIR=$(BLDDIR)/fft					\
@@ -74,8 +75,8 @@ simple-add: fft algebralib libstark
 		LIBSTARKLINKDIR=$(BLDDIR)/libstark 
 
 simple-add-clean:
-	$(MAKE) clean -C $(DPM_DIR) \
-		BLDDIR=$(BLDDIR)/simple-add \
+	$(MAKE) clean -C $(ADD_DIR) \
+		BLDDIR=$(BLDDIR)/simpleadd \
 		EXEDIR=$(EXE_DIR)
 
 stark-tinyram: gadgetlib fft algebralib libstark

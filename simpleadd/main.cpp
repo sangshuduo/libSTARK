@@ -25,6 +25,10 @@ void execute(const unsigned int a, const unsigned int b, const unsigned security
 }
 
 int main(int argc, char *argv[]) {
+    if(argc < 3) {
+        cout << "not HEllo" << endl;
+        return 0;
+    }
     cout << "HEllo" << endl;
 
     const unsigned int a_num(stoul(argv[1]));

@@ -73,5 +73,18 @@ class polyAdd_class : public PolynomialInterface {
         polys_.push_back(polyPtr_t(new polyAdd_class()));
     }
 
+    Add_CS* Add_CS::clone() const{
+        return new Add_CS();
+    }
+
+    using std::vector;
+    vector<FieldElement> Add_CS::eval(const vector<FieldElement>& assignment) const{
+        vector<FieldElement> res;
+        for(const auto& p: polys_){
+            res.push_back(p->eval(assignment));
+        }
+        return res;
+    }
+
 } // ACSP_FOR_ADD namespace
 } // simple_add namespace

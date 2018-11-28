@@ -26,5 +26,11 @@ void execute(const unsigned int a, const unsigned int b, const unsigned security
 
 int main(int argc, char *argv[]) {
     cout << "HEllo" << endl;
+
+    const unsigned int a_num(stoul(argv[1]));
+    const unsigned int b_num(stoul(argv[2]));
+    unsigned int securityParameter = 60;
+    
+    execute(a_num, b_num, securityParameter);
     return 0;
 }

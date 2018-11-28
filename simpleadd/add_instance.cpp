@@ -43,7 +43,16 @@ libstark::BairInstance buildBairInstance(const AddCommonParams& params) {
     BairInstance::constraintsPtr_t constraints_assignment(new Add_CS());
     BairInstance::constraintsPtr_t constraints_permutation(new empty_CS());
 
-    // return BairInstance(vectorsLen, domainSizeIndicator, std::move(constraints_assignment), std::move(constraints_permutation));
+    BairInstance::boundaryConstraints_t boundary;
+    boundary[BairInstance::point_t(0, Add::reg::B00)] = Algebra::zero();
+
+    return BairInstance(vectorsLen, 
+                        domainSizeIndicator, 
+                        std::move(constraints_assignment), 
+                        std::move(constraints_permutation), 
+                        boundary,
+                        std::vector<Algebra::FieldElement>(Add::NUMREGS, zero())
+                        );
 }
 
 } // namespace ACSP_FOR_ADD

@@ -3,6 +3,10 @@
 #include <string>
 
 #include <protocols/protocol.hpp>
+#include "Add.hpp"
+
+using namespace simple_add;
+using namespace simple_add::ACSP_FOR_ADD;
 
 using std::cout;
 using std::endl;
@@ -11,23 +15,26 @@ using std::stoul;
 
 using std::vector;
 
-// void execute(const unsigned int a, const unsigned int b, const unsigned securityParameter) {
-//     libstark::BairInstance bair_instance = buildBairInstance();
-//     libstark::BairWitness bair_witness = buildBairWitness();
+void execute(const unsigned int a, const unsigned int b, const unsigned securityParameter) {
+    AddCommonParams params;
 
-//     libstark::Protocols::executeProtocol(bair_instance, bair_witness, securityParameter, false, false, true);
-// }
+    libstark::BairInstance bair_instance = buildBairInstance(params);
+    // libstark::BairWitness bair_witness = buildBairWitness();
 
-// libstark::BairInstance buildBairInstance() {
-//     using Algebra::FieldElement;
-//     using Algebra::zero;
-
-//     const size_t vectorsLen = 81;
-
-//     return BairInstance(vectorsLen, );
-// }
+    // libstark::Protocols::executeProtocol(bair_instance, bair_witness, securityParameter, false, false, true);
+}
 
 int main(int argc, char *argv[]) {
+    if(argc < 3) {
+        cout << "not HEllo" << endl;
+        return 0;
+    }
     cout << "HEllo" << endl;
+
+    const unsigned int a_num(stoul(argv[1]));
+    const unsigned int b_num(stoul(argv[2]));
+    unsigned int securityParameter = 60;
+    
+    execute(a_num, b_num, securityParameter);
     return 0;
 }

@@ -10,6 +10,32 @@
 
 using namespace Algebra;
 
+namespace Add {
+
+    class evalp {
+        public:
+            static void setParams(const std::vector<FieldElement>&, const FieldElement&, const int);
+            static FieldElement ep(const std::vector<FieldElement>&);
+        private:
+            static std::vector<FieldElement> rHash;
+            static FieldElement last_leaf_index;
+    };
+
+    const short NUMREGS = 3; 
+    short getDim(long long);
+
+    namespace reg
+    {
+    typedef enum RegType
+    {
+        B00 = 0,
+        B01,
+        B02,        
+    } RegType;
+    }
+}
+
+
 namespace simple_add{
     namespace ACSP_FOR_ADD{
         typedef struct{

@@ -19,7 +19,7 @@ void execute(const unsigned int a, const unsigned int b, const unsigned security
     AddCommonParams params;
 
     libstark::BairInstance bair_instance = buildBairInstance(params);
-    // libstark::BairWitness bair_witness = buildBairWitness();
+    libstark::BairWitness bair_witness = buildBairWitness(params, a, b);
 
     // libstark::Protocols::executeProtocol(bair_instance, bair_witness, securityParameter, false, false, true);
 }

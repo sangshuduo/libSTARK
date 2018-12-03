@@ -24,7 +24,7 @@ void execute(const unsigned int a, const unsigned int b, const unsigned security
     libstark::BairInstance bair_instance = buildBairInstance(params);
     libstark::BairWitness bair_witness = buildBairWitness(params, a, b);
 
-    // libstark::Protocols::executeProtocol(bair_instance, bair_witness, securityParameter, false, false, true);
+    libstark::Protocols::executeProtocol(bair_instance, bair_witness, securityParameter, false, false, true);
 }
 
 int main(int argc, char *argv[]) {

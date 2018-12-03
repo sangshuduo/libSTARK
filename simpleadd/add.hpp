@@ -21,21 +21,19 @@ namespace Add {
             static FieldElement last_leaf_index;
     };
 
-    const short NUMREGS = 3;     
+    const short NUMREGS = 1;     
 
     namespace reg
     {
     typedef enum RegType
     {
-        B00 = 0,
-        B01,
-        B02,        
+        B00 = 0    
     } RegType;
     }
 
     typedef std::vector<std::vector<FieldElement>> & witnessType;
     short getDim(long long);
-    void genWitnessAddWithPadding(witnessType arr, const int a, const int b);
+    void genWitnessAddWithPadding(witnessType arr, const unsigned int a, const unsigned int b);
 }
 
 
@@ -47,7 +45,7 @@ namespace simple_add{
         }AddCommonParams;
 
         libstark::BairInstance buildBairInstance(const AddCommonParams&);
-        libstark::BairWitness buildBairWitness(const AddCommonParams&, const Add::witnessType&);
+        libstark::BairWitness buildBairWitness(const AddCommonParams&, const unsigned int, const unsigned int);
     }
 }
 

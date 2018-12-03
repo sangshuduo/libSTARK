@@ -23,7 +23,7 @@ namespace ACSP_FOR_ADD{
                 coloringClass(const AddCommonParams& commonParams, const unsigned int a, const unsigned int b):
                     coloring_((size_t(1) << Add::getDim(commonParams.length)) - 1, vector<FieldElement>(Add::NUMREGS))
                 {
-                    Add::genWitnessAddWithPadding(coloring_, a, b, commonParams.length);
+                    Add::genWitnessAddWithPadding(coloring_, a, b);
                 }
 
                 libstark::BairWitness::color_t getElementByIndex(index_t index)const{

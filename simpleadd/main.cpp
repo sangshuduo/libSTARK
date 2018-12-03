@@ -15,8 +15,11 @@ using std::stoul;
 
 using std::vector;
 
+// a: public output, 63
+// b: private input which should be one for satisfying constraints
 void execute(const unsigned int a, const unsigned int b, const unsigned securityParameter) {
     AddCommonParams params;
+    params.length = 1;
 
     libstark::BairInstance bair_instance = buildBairInstance(params);
     libstark::BairWitness bair_witness = buildBairWitness(params, a, b);

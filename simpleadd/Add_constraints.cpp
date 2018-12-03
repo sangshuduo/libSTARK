@@ -51,10 +51,9 @@ class polyAdd_class : public PolynomialInterface {
                 }
             };
 
-            const ttdeg B00 = ttdeg(inputDegrees[Add::reg::B00]);
-            const ttdeg B01 = ttdeg(inputDegrees[Add::reg::B01]);
+            const ttdeg B00 = ttdeg(inputDegrees[Add::reg::B00]);            
 
-            const ttdeg resTmp = B00 + B01; // TODO: fix
+            const ttdeg resTmp = B00; // TODO: fix
 
             return PolynomialDegree(resTmp.deg_);
         }

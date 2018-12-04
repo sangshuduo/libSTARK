@@ -22,6 +22,7 @@ void execute(const unsigned int a, const unsigned int b, const unsigned security
     params.length = 1;
 
     libstark::BairInstance bair_instance = buildBairInstance(params);
+    Add::evalp::setParams(1234);
     libstark::BairWitness bair_witness = buildBairWitness(params, a, b);
 
     libstark::Protocols::executeProtocol(bair_instance, bair_witness, securityParameter, false, false, true);
@@ -29,10 +30,9 @@ void execute(const unsigned int a, const unsigned int b, const unsigned security
 
 int main(int argc, char *argv[]) {
     if(argc < 3) {
-        cout << "not HEllo" << endl;
+        cout << "Need 2 arguments." << endl;
         return 0;
-    }
-    cout << "HEllo" << endl;
+    }    
 
     const unsigned int a_num(stoul(argv[1]));
     const unsigned int b_num(stoul(argv[2]));

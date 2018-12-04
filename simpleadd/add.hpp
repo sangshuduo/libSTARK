@@ -14,7 +14,7 @@ namespace Add {
 
     class evalp {
         public:
-            static void setParams(const std::vector<FieldElement>&, const FieldElement&, const int);
+            static void setParams(const int);
             static FieldElement ep(const std::vector<FieldElement>&);
         private:
             static std::vector<FieldElement> rHash;

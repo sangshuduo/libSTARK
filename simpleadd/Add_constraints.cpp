@@ -1,3 +1,5 @@
+#include <iostream>
+#include <string>
 #include "Add_instance.hpp"
 #include <algebraLib/BitExtract.hpp>
 #include "languages/Bair/BairInstance.hpp"
@@ -11,6 +13,10 @@ using Algebra::generateRandom;
 using Algebra::one;
 using Algebra::PolynomialDegree;
 using Algebra::PolynomialInterface;
+
+using std::cout;
+using std::endl;
+using std::string;
 
 namespace simple_add {
 namespace ACSP_FOR_ADD{
@@ -26,14 +32,14 @@ class polyAdd_class : public PolynomialInterface {
             return Add::evalp::ep(x);
         }
 
-        // bool isEffectiveInput(const size_t varId)const{
-        //     switch(varId)
-        //     {
-        //         case Add::NUMREGS + Add::reg::ST3: return false;
-        //         case Add::NUMREGS + Add::reg::invRC: return false;
-        //             default: return true;
-        //     }
-        // }
+        bool isEffectiveInput(const size_t varId)const{
+            switch(varId)
+            {
+                // case Add::NUMREGS + Add::reg::ST3: return false;
+                // case Add::NUMREGS + Add::reg::invRC: return false;
+                default: return true;
+            }
+        }
 
         Algebra::PolynomialDegree getDegreeBound(const std::vector<PolynomialDegree>& inputDegrees)const{
 
@@ -51,10 +57,11 @@ class polyAdd_class : public PolynomialInterface {
                 }
             };
 
-            const ttdeg B00 = ttdeg(inputDegrees[Add::reg::B00]);            
+            const ttdeg B00 = ttdeg(inputDegrees[Add::reg::B00]);           
+            const ttdeg B00_next = ttdeg(inputDegrees[Add::reg::B00 + Add::NUMREGS]);
 
-            const ttdeg resTmp = B00; // TODO: fix
-
+            const ttdeg resTmp = B00 + B00_next; // TODO: fix
+            
             return PolynomialDegree(resTmp.deg_);
         }
 

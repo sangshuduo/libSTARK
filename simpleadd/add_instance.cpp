@@ -45,6 +45,7 @@ libstark::BairInstance buildBairInstance(const AddCommonParams& params) {
 
     BairInstance::boundaryConstraints_t boundary;
     boundary[BairInstance::point_t(0, Add::reg::B00)] = Algebra::zero();
+    // boundary[BairInstance::point_t(0, Add::reg::B00)] = Algebra::zero(); // TODO: Need last boundary?
 
     return BairInstance(vectorsLen, 
                         domainSizeIndicator, 

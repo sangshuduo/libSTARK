@@ -495,7 +495,7 @@ namespace AES160hashcLOCI{
 		;
 
 		FieldElement PolyComputationInversePowers = vars[reg::W11] + vars[reg::inv1] * vars[reg::inv1] * vars[reg::inv1] * vars[reg::inv1];
-		PolyComputationInversePowers += randCoeff[RI(219)] * (vars[reg::W12] + vars[reg::W11] * vars[reg::W11] * vars[reg::W11] * vars[reg::W11]);
+		PolyComputationInversePowers += randCoeff[RI(219)] * (vars[reg::W12] + vars[reg::W11] * vars[reg::W11] * vars[reg::W11] * vars[reg::W11]); // Constraint polynomial for Fermat's little theorem
 		PolyComputationInversePowers += randCoeff[RI(220)] * (vars[reg::W13] + vars[reg::W12] * vars[reg::W12] * vars[reg::W12] * vars[reg::W12]);
 
 		PolyComputationInversePowers += randCoeff[RI(221)] * (vars[reg::W21] + vars[reg::inv2] * vars[reg::inv2] * vars[reg::inv2] * vars[reg::inv2]);
@@ -943,6 +943,7 @@ namespace AES160hashcLOCI{
 			randCoeff[i] = Algebra::generateRandom();
 	}
 	FieldElement evalp::ep(const std::vector<FieldElement>& vars) {
+		// cout<<vars.size()<<endl; // 161
 		return evalCPoly(vars, evalp::rHash, evalp::last_leaf_index);
 	}
 	

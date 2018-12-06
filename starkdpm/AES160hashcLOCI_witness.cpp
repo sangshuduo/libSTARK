@@ -23,8 +23,10 @@ namespace{
             coloringClass(const AES160hashcLOCICommonParams& commonParams, const witnessType hashC, const fingerprint_t& fprint):
 				coloring_((size_t(1) << AES160hashcLOCI::getDim(commonParams.length))-1, vector<FieldElement>(AES160hashcLOCI::NUMREGS))
             {
-				AES160hashcLOCI::genWitnessLOCIHashcAES160WithPadding(coloring_, hashC,	commonParams.length, fprint);
-					//std::cout << "done " << coloring_[0][AES160hashchain::reg::STATE] << std::endl;
+                cout << "do " << coloring_[0].size() << endl;
+                // cout << "do " << coloring_.size() << endl;
+                AES160hashcLOCI::genWitnessLOCIHashcAES160WithPadding(coloring_, hashC,	commonParams.length, fprint);
+                cout << "done " << coloring_[0][AES160hashcLOCI::reg::ST2] << endl;
             }
             
             libstark::BairWitness::color_t getElementByIndex(index_t index)const{

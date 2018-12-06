@@ -8,6 +8,8 @@ namespace ACSP_FOR_ADD{
     using Algebra::FieldElement;
     using namespace Add;
 
+    using namespace Algebra;
+
     namespace{        
         class idPermutation : public libstark::BairWitness::permutation_t{
             public:
@@ -18,12 +20,13 @@ namespace ACSP_FOR_ADD{
 
         class coloringClass : public libstark::BairWitness::assignment_t{
             private:
-                std::vector<libstark::BairWitness::color_t> coloring_;
+                std::vector<libstark::BairWitness::color_t> coloring_;                
             public:
                 coloringClass(const AddCommonParams& commonParams, const unsigned int a, const unsigned int b):
-                    coloring_((size_t(1) << Add::getDim(commonParams.length)) - 1, vector<FieldElement>(Add::NUMREGS))
-                {
-                    Add::genWitnessAddWithPadding(coloring_, a, b);
+                    coloring_((size_t(1) << Add::getDim(commonParams.length)) - 1, vector<FieldElement>(Add::NUMREGS)) // coloring_[127][1]                    
+                {                                                             
+                    Add::genWitnessAddWithPadding(coloring_, a, b);        
+                    cout<<coloring_[2][0]<<endl;            
                 }
 
                 libstark::BairWitness::color_t getElementByIndex(index_t index)const{

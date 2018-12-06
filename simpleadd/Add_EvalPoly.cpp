@@ -17,7 +17,11 @@ namespace Add{
 
     FieldElement evalp::ep(const std::vector<FieldElement>& vars) { // TODO
         randCoeff[0] = Algebra::generateRandom();
-        return randCoeff[RI(0)] * (vars[reg::B00 + NUMREGS] + vars[reg::B00]);
+        FieldElement tval = randCoeff[RI(0)] * (vars[reg::B00 + NUMREGS] + vars[reg::B00] + mapIntegerToFieldElement(0, 64, 1));
+        // cout << vars[reg::B00 + NUMREGS] + vars[reg::B00]<<endl;
+        // cout << "fo" << tval << endl;
+        return tval;        
+        // return randCoeff[RI(0)] * (vars[reg::B00] + one());
     }
 
 } //namespace

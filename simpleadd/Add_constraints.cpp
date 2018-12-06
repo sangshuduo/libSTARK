@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 #include "Add_instance.hpp"
 #include <algebraLib/BitExtract.hpp>
 #include "languages/Bair/BairInstance.hpp"
@@ -14,9 +12,6 @@ using Algebra::one;
 using Algebra::PolynomialDegree;
 using Algebra::PolynomialInterface;
 
-using std::cout;
-using std::endl;
-using std::string;
 
 namespace simple_add {
 namespace ACSP_FOR_ADD{
@@ -60,8 +55,7 @@ class polyAdd_class : public PolynomialInterface {
             const ttdeg B00 = ttdeg(inputDegrees[Add::reg::B00]);           
             const ttdeg B00_next = ttdeg(inputDegrees[Add::reg::B00 + Add::NUMREGS]);
 
-            const ttdeg resTmp = B00 + B00_next; // TODO: fix
-            
+            const ttdeg resTmp = B00 + B00_next; // 255 = max(255, 255)    
             return PolynomialDegree(resTmp.deg_);
         }
 

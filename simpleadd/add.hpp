@@ -1,6 +1,10 @@
 #ifndef __ACSP_FOR_ADD_HPP__
 #define __ACSP_FOR_ADD_HPP__
 
+#include <iostream>
+#include <string>
+#include <string>
+
 #include "languages/Bair/BairInstance.hpp"
 #include "languages/Bair/BairWitness.hpp"
 
@@ -9,6 +13,10 @@
 #define EXTDIM 64 // TODO: fix number
 
 using namespace Algebra;
+
+using std::cout;
+using std::endl;
+using std::string;
 
 namespace Add {
 
@@ -23,17 +31,20 @@ namespace Add {
 
     const short NUMREGS = 1;     
 
-    namespace reg
-    {
-    typedef enum RegType
-    {
-        B00 = 0    
-    } RegType;
+    namespace reg {
+        typedef enum RegType
+        {
+            B00 = 0    
+        } RegType;
     }
 
     typedef std::vector<std::vector<FieldElement>> & witnessType;
     short getDim(long long);
-    void genWitnessAddWithPadding(witnessType arr, const unsigned int a, const unsigned int b);
+    void genWitnessAddWithPadding(witnessType arr, const unsigned int, const unsigned int);
+
+    // namespace consts {
+    //     const FieldElement oneTransformed = mapIntegerToFieldElement(0, 64, 0);
+    // }
 }
 
 

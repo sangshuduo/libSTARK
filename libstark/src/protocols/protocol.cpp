@@ -431,7 +431,7 @@ bool executeProtocol(const BairInstance& instance, const BairWitness& witness, c
     
         if(testPCP){
             const auto RS_prover = Biased_prover;
-            prover_t prover(instance,*acspWitness, RS_prover);
+            prover_t prover(instance,*acspWitness, RS_prover);            
             return Protocols::executeProtocol(prover,verifier,false);
         }
         else if(noWitness){

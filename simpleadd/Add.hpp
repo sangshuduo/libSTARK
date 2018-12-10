@@ -3,12 +3,14 @@
 
 #include <iostream>
 #include <string>
-#include <string>
 
 #include "languages/Bair/BairInstance.hpp"
 #include "languages/Bair/BairWitness.hpp"
 
 #include <algebraLib/BitExtract.hpp>
+
+#define PRNMSG(str) do { std::cout << str << std::endl; } while( false )
+#define DBGMSG(str) do { } while ( false )
 
 #define EXTDIM 64 // TODO: fix number
 
@@ -20,21 +22,25 @@ using std::string;
 
 namespace Add {
 
+    // FieldElement evalCPoly(const std::vector<FieldElement> & vars,
+	// 	const std::vector<FieldElement> & RootHash, const FieldElement& gN);
+
     class evalp {
         public:
-            static void setParams(const int);
+            static void setParams(const unsigned int, const int);
             static FieldElement ep(const std::vector<FieldElement>&);
         private:
-            static std::vector<FieldElement> rHash;
-            static FieldElement last_leaf_index;
+            static unsigned int a_param;            
     };
 
-    const short NUMREGS = 1;     
+    const short NUMREGS = 3;     
 
     namespace reg {
         typedef enum RegType
         {
-            B00 = 0    
+            B00 = 0,
+            B01,
+            B02        
         } RegType;
     }
 
@@ -45,6 +51,7 @@ namespace Add {
     // namespace consts {
     //     const FieldElement oneTransformed = mapIntegerToFieldElement(0, 64, 0);
     // }
+    
 }
 
 
@@ -55,8 +62,8 @@ namespace simple_add{
             std::vector<Algebra::FieldElement> head;
         }AddCommonParams;
 
-        libstark::BairInstance buildBairInstance(const AddCommonParams&);
-        libstark::BairWitness buildBairWitness(const AddCommonParams&, const unsigned int, const unsigned int);
+        libstark::BairInstance buildBairInstance(const AddCommonParams&, const unsigned int);
+        libstark::BairWitness buildBairWitness(const AddCommonParams &, const unsigned int, const unsigned int);
     }
 }
 

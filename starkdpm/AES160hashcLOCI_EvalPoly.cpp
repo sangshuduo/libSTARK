@@ -943,7 +943,7 @@ namespace AES160hashcLOCI{
 			randCoeff[i] = Algebra::generateRandom();
 	}
 	FieldElement evalp::ep(const std::vector<FieldElement>& vars) {
-		// cout<<vars.size()<<endl; // 161
+		// cout << evalp::rHash[0] << endl; // 161
 		return evalCPoly(vars, evalp::rHash, evalp::last_leaf_index);
 	}
 	

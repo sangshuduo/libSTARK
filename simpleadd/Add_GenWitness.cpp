@@ -1,6 +1,6 @@
 #include "Add.hpp"
 
-#define CYCLES 3 // TODO: Fix number
+#define CYCLES 62 // TODO: Fix number
 
 using namespace Algebra;
 
@@ -15,45 +15,33 @@ namespace Add {
         }
     }
 
-    void genWitnessAddWithPadding(witnessType arr, const unsigned int a, const unsigned int b) {
-        size_t t = 0;
-        // size_t s = 0;
-        const FieldElement oneTransformed = mapIntegerToFieldElement(0, 64, 1);
-        // const size_t oneTransforming = mapFieldElementToInteger(0, 0, oneTransformed);
-        DBGGET(arr, t, reg::B00) = oneTransformed;
-        // DBGGET(arr, 1, reg::B00) = mapIntegerToFieldElement(0, 64, a+1);
-        // DBGGET(arr, 2, reg::B00) = mapIntegerToFieldElement(0, 64, b);
-        for (; t < arr.size() - 1; ++t) {
-            DBGGET(arr, t + 1, reg::B00) = arr[t][reg::B00] + oneTransformed;
+    void genWitnessAddWithPadding(witnessType arr, const unsigned int t, const unsigned int a) {                               
+        DBGGET(arr, 0, reg::B00) = zero();
+        DBGGET(arr, 0, reg::B01) = zero();
+        DBGGET(arr, 0, reg::B02) = one();
+        
+        DBGGET(arr, 1, reg::B00) = zero();
+        DBGGET(arr, 1, reg::B01) = one();
+
+        for (size_t i = 1;i < t - 1; i++) {            
+            size_t b0_num = mapFieldElementToInteger(0, 64, arr[i][reg::B00]);
+            size_t b1_num = mapFieldElementToInteger(0, 64, arr[i][reg::B01]);            
+
+            DBGGET(arr, i, reg::B02) = mapIntegerToFieldElement(0, 64, b0_num + b1_num);
+
+            DBGGET(arr, i + 1, reg::B00) = arr[i][reg::B01];
+            DBGGET(arr, i + 1, reg::B01) = arr[i][reg::B02];
+           
         }
-        // DBGGET(arr, 3, reg::B00) = mapIntegerToFieldElement(0, 64, 3);
 
-        // cout << "oneTransformedpyth" << arr[0][0] << endl;
-        // // cout << "oneTransformedpyth" << oneTransforming << endl;
-        // cout << "before" << arr[0][0] << endl;
-        // for (; t < arr.size() - 1; t++) {
-        //     // SaveRegisters(arr, t);
-        //     // if (arr[t][0] == zero()){
-        //         DBGGET(arr, t + 1, reg::B00) = arr[t][reg::B00] + one();
-        //     // } else {
-        //     //     for (; arr[t][reg::B00].element_.c[s]; ++s) {
+        DBGGET(arr, t-1, reg::B02) = mapIntegerToFieldElement(0, 64, a);        
 
-        //     //     }
-        //     //     FieldElement sTransformed = mapIntegerToFieldElement(s, 0, 1);
-        //     //     FieldElement uTransformed = mapIntegerToFieldElement(s - 1, 0, 1);
-        //     //     DBGGET(arr, t + 1, reg::B00) = arr[t][reg::B00] + sTransformed;
-        //     //     DBGGET(arr, t + 1, reg::B00) = arr[t][reg::B00] + uTransformed;
-        //     //     s++;
-        //     // }            
-        // }
-        cout<< "after" << arr[0][0]<<endl;
-        cout << "after" << arr[1][0] << endl;
-        // cout << "after" << arr[2][0] << endl;
-        // cout << "after" << arr[3][0] << endl;
+        // cout << "after" << mapFieldElementToInteger(0, 64, arr[7][reg::B00]) << endl;
     }
 
     short getDim(long long len)
     {
-        return ceil(Infrastructure::Log2((long long)CYCLES * (len + 1) - 2));
+        // return ceil(Infrastructure::Log2((long long)CYCLES * (len + 1) - 2));
+        return ceil(Infrastructure::Log2(59LL * len));
     }
-}
+} // namespace

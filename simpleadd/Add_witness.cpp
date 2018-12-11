@@ -22,11 +22,11 @@ namespace ACSP_FOR_ADD{
             private:
                 std::vector<libstark::BairWitness::color_t> coloring_;                
             public:
-                coloringClass(const unsigned int t, const unsigned int b):
+                coloringClass(const unsigned int a, const unsigned int b):
                     // coloring_((size_t(1) << Add::getDim(commonParams.length)) - 1, vector<FieldElement>(Add::NUMREGS)) // coloring_[127][1]                    
-                    coloring_(t , vector<FieldElement>(Add::NUMREGS)) 
+                    coloring_(Add::lastStep + 1 , vector<FieldElement>(Add::NUMREGS)) 
                 {                                                             
-                    Add::genWitnessAddWithPadding(coloring_, t, b);                    
+                    Add::genWitnessAddWithPadding(coloring_, a, b);                    
                 }
 
                 libstark::BairWitness::color_t getElementByIndex(index_t index)const{
@@ -36,10 +36,10 @@ namespace ACSP_FOR_ADD{
         };
     }
 
-    libstark::BairWitness buildBairWitness(const unsigned int t, const unsigned int a){
+    libstark::BairWitness buildBairWitness(const unsigned int a, const unsigned int b){
         using libstark::BairWitness;
         BairWitness::permutation_ptr perm(new idPermutation());
-        BairWitness::assignment_ptr assignment(new coloringClass(t, a));
+        BairWitness::assignment_ptr assignment(new coloringClass(a, b));
 
         return BairWitness(std::move(assignment), std::move(perm));
     }

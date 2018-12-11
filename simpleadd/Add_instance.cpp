@@ -32,7 +32,7 @@ private:
 };
 }
 
-libstark::BairInstance buildBairInstance(const unsigned int t, const unsigned int a) {
+libstark::BairInstance buildBairInstance(const unsigned int a, const unsigned int b) {
     using Algebra::FieldElement;
     using Algebra::zero;
     using Algebra::mapIntegerToFieldElement;
@@ -45,13 +45,13 @@ libstark::BairInstance buildBairInstance(const unsigned int t, const unsigned in
     BairInstance::constraintsPtr_t constraints_permutation(new empty_CS());
 
     BairInstance::boundaryConstraints_t boundary;
-    boundary[BairInstance::point_t(0, Add::reg::B00)] = zero();
-    boundary[BairInstance::point_t(0, Add::reg::B01)] = zero();
-
-    const unsigned long lastTimestamp = t - 1;
-    const short domainSizeIndicator = (short)Infrastructure::Log2(t);
+    boundary[BairInstance::point_t(0, Add::reg::A)] = mapIntegerToFieldElement(0, 64, a);
+    boundary[BairInstance::point_t(0, Add::reg::B)] = mapIntegerToFieldElement(0, 64, b);
     
-    boundary[BairInstance::point_t(lastTimestamp, Add::reg::B02)] = mapIntegerToFieldElement(0, 64, a);
+    const short domainSizeIndicator = (short)Infrastructure::Log2(Add::lastStep + 1);
+        
+    boundary[BairInstance::point_t(Add::lastStep, Add::reg::C)] 
+                = mapIntegerToFieldElement(0, 64, 52) + mapIntegerToFieldElement(0, 64, 9);
 
     return BairInstance(vectorsLen, 
                         domainSizeIndicator, 

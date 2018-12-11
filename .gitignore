@@ -6,4 +6,4 @@ simple-add
 .pytest_cache
 simpleadd/add_instance.cpp
 simpleadd/add.hpp
-
+.DS_Store

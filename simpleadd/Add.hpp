@@ -47,23 +47,14 @@ namespace Add {
     typedef std::vector<std::vector<FieldElement>> & witnessType;
     short getDim(long long);
     void genWitnessAddWithPadding(witnessType arr, const unsigned int, const unsigned int);
-
-    // namespace consts {
-    //     const FieldElement oneTransformed = mapIntegerToFieldElement(0, 64, 0);
-    // }
     
 }
 
 
 namespace simple_add{
-    namespace ACSP_FOR_ADD{
-        typedef struct{
-            long long length;
-            std::vector<Algebra::FieldElement> head;
-        }AddCommonParams;
-
-        libstark::BairInstance buildBairInstance(const AddCommonParams&, const unsigned int);
-        libstark::BairWitness buildBairWitness(const AddCommonParams &, const unsigned int, const unsigned int);
+    namespace ACSP_FOR_ADD{        
+        libstark::BairInstance buildBairInstance(const unsigned int, const unsigned int);
+        libstark::BairWitness buildBairWitness(const unsigned int, const unsigned int);
     }
 }
 

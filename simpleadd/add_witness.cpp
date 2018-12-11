@@ -22,11 +22,11 @@ namespace ACSP_FOR_ADD{
             private:
                 std::vector<libstark::BairWitness::color_t> coloring_;                
             public:
-                coloringClass(const AddCommonParams& commonParams, const unsigned int a, const unsigned int b):
-                    coloring_((size_t(1) << Add::getDim(commonParams.length)) - 1, vector<FieldElement>(Add::NUMREGS)) // coloring_[127][1]                    
+                coloringClass(const unsigned int t, const unsigned int b):
+                    // coloring_((size_t(1) << Add::getDim(commonParams.length)) - 1, vector<FieldElement>(Add::NUMREGS)) // coloring_[127][1]                    
+                    coloring_((size_t(1) << Add::getDim(t-1)) - 1 , vector<FieldElement>(Add::NUMREGS)) // coloring_[127][1]                    
                 {                                                             
-                    Add::genWitnessAddWithPadding(coloring_, a, b);        
-                    cout<<coloring_[2][0]<<endl;            
+                    Add::genWitnessAddWithPadding(coloring_, t, b);                    
                 }
 
                 libstark::BairWitness::color_t getElementByIndex(index_t index)const{
@@ -36,10 +36,10 @@ namespace ACSP_FOR_ADD{
         };
     }
 
-    libstark::BairWitness buildBairWitness(const AddCommonParams &commonParams, const unsigned int a, const unsigned int b){
+    libstark::BairWitness buildBairWitness(const unsigned int t, const unsigned int a){
         using libstark::BairWitness;
         BairWitness::permutation_ptr perm(new idPermutation());
-        BairWitness::assignment_ptr assignment(new coloringClass(commonParams, a, b));
+        BairWitness::assignment_ptr assignment(new coloringClass(t, a));
 
         return BairWitness(std::move(assignment), std::move(perm));
     }

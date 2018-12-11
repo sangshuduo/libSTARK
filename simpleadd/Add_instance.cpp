@@ -31,19 +31,21 @@ private:
 };
 }
 
-libstark::BairInstance buildBairInstance(const AddCommonParams& params, const unsigned int a) {
+libstark::BairInstance buildBairInstance(const unsigned int t, const unsigned int a) {
     using Algebra::FieldElement;
     using Algebra::zero;
     using Algebra::mapIntegerToFieldElement;
     using libstark::BairInstance;
 
     const size_t vectorsLen = Add::NUMREGS;
-    const short domainSizeIndicator = Add::getDim(params.length);
+    // const short domainSizeIndicator = Add::getDim(params.length);
+    const short domainSizeIndicator = Add::getDim(t - 1);
     BairInstance::constraintsPtr_t constraints_assignment(new Add_CS());
     BairInstance::constraintsPtr_t constraints_permutation(new empty_CS());
 
     BairInstance::boundaryConstraints_t boundary;
-    // boundary[BairInstance::point_t(0, Add::reg::B00)] = Algebra::one(); // TODO: one?
+    // boundary[BairInstance::point_t(0, Add::reg::B00)] = zero();
+    // boundary[BairInstance::point_t(0, Add::reg::B01)] = zero();
     // boundary[BairInstance::point_t(0, Add::reg::B00)] = Algebra::zero(); // TODO: Need last boundary?
 
     return BairInstance(vectorsLen, 

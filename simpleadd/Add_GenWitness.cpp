@@ -9,11 +9,11 @@ namespace Add {
 
     #define DBGGET(a,b,c) (a)[(b)][(c)]
 
-    void SaveRegisters(witnessType arr, size_t t) {
-        for (int i = 0; i < NUMREGS; i++) {
-            DBGGET(arr, t + 1, i) = arr[t][i];
-        }
-    }
+    // void SaveRegisters(witnessType arr, size_t t) {
+    //     for (int i = 0; i < NUMREGS; i++) {
+    //         DBGGET(arr, t + 1, i) = arr[t][i];
+    //     }
+    // }
 
     void genWitnessAddWithPadding(witnessType arr, const unsigned int t, const unsigned int a) {                               
         DBGGET(arr, 0, reg::B00) = zero();

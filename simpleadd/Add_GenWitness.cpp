@@ -32,16 +32,17 @@ namespace Add {
             DBGGET(arr, i + 1, reg::B00) = arr[i][reg::B01];
             DBGGET(arr, i + 1, reg::B01) = arr[i][reg::B02];
            
-        }
-
-        DBGGET(arr, t-1, reg::B02) = mapIntegerToFieldElement(0, 64, a);        
-
-        // cout << "after" << mapFieldElementToInteger(0, 64, arr[7][reg::B00]) << endl;
+           if (i == t - 2) {
+               size_t b0_num_last = mapFieldElementToInteger(0, 64, arr[i + 1][reg::B00]);
+               size_t b1_num_last = mapFieldElementToInteger(0, 64, arr[i + 1][reg::B01]);
+               DBGGET(arr, i + 1, reg::B02) = mapIntegerToFieldElement(0, 64, b0_num_last + b1_num_last);
+           }
+        }                
     }
 
     short getDim(long long len)
     {
-        // return ceil(Infrastructure::Log2((long long)CYCLES * (len + 1) - 2));
-        return ceil(Infrastructure::Log2(59LL * len));
+        return ceil(Infrastructure::Log2((long long)CYCLES * (len + 1) - 2));
+        // return ceil(Infrastructure::Log2(59LL * len));
     }
 } // namespace

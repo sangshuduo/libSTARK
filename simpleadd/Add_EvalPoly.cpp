@@ -22,7 +22,7 @@ namespace Add{
 
         FieldElement tval = randCoeff[RI(0)] * (vars[reg::B00 + NUMREGS] + vars[reg::B01]);
         tval += randCoeff[RI(1)] * (vars[reg::B01 + NUMREGS] + vars[reg::B02]);
-        // tval += randCoeff[RI(2)] * (vars[reg::B00] + vars[reg::B01] + vars[reg::B02]);
+        tval += randCoeff[RI(2)] * ((vars[reg::B00] + vars[reg::B01] + vars[reg::B02]) * (vars[reg::B00] + vars[reg::B01]));
 
         return tval;        
     }

@@ -4,6 +4,4 @@ stark-tinyram
 simple-add
 .vscode
 .pytest_cache
-simpleadd/add_instance.cpp
-simpleadd/add.hpp
 .DS_Store

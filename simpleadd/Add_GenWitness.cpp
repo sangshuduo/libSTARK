@@ -15,28 +15,16 @@ namespace Add {
     //     }
     // }
 
-    void genWitnessAddWithPadding(witnessType arr, const unsigned int t, const unsigned int a) {                               
-        DBGGET(arr, 0, reg::B00) = zero();
-        DBGGET(arr, 0, reg::B01) = zero();
-        DBGGET(arr, 0, reg::B02) = one();
+    void genWitnessAddWithPadding(witnessType arr, const unsigned int a, const unsigned int b) {                               
         
-        DBGGET(arr, 1, reg::B00) = zero();
-        DBGGET(arr, 1, reg::B01) = one();
+        DBGGET(arr, 0, reg::A) = mapIntegerToFieldElement(0, 64, a);
+        DBGGET(arr, 0, reg::B) = mapIntegerToFieldElement(0, 64, b);
+        DBGGET(arr, 0, reg::C) = arr[0][reg::A] + arr[0][reg::B];
 
-        for (size_t i = 1;i < t - 1; i++) {            
-            size_t b0_num = mapFieldElementToInteger(0, 64, arr[i][reg::B00]);
-            size_t b1_num = mapFieldElementToInteger(0, 64, arr[i][reg::B01]);            
-
-            DBGGET(arr, i, reg::B02) = mapIntegerToFieldElement(0, 64, b0_num + b1_num);
-
-            DBGGET(arr, i + 1, reg::B00) = arr[i][reg::B01];
-            DBGGET(arr, i + 1, reg::B01) = arr[i][reg::B02];
-           
-           if (i == t - 2) {
-               size_t b0_num_last = mapFieldElementToInteger(0, 64, arr[i + 1][reg::B00]);
-               size_t b1_num_last = mapFieldElementToInteger(0, 64, arr[i + 1][reg::B01]);
-               DBGGET(arr, i + 1, reg::B02) = mapIntegerToFieldElement(0, 64, b0_num_last + b1_num_last);
-           }
+        for (size_t i = 1;i < Add::lastStep + 1; i++) {                                    
+             DBGGET(arr, i, reg::A) = arr[i - 1][reg::B];
+             DBGGET(arr, i, reg::B) = arr[i - 1][reg::C];
+             DBGGET(arr, i, reg::C) = arr[i][reg::A] + arr[i][reg::B];
         }                
     }
 

@@ -299,15 +299,15 @@ typedef AcspSummandsPolynomial::polyID polyID;
 
 	}
 
-    /**
-     * @brief   Returns an upper bound for degree of this polynomial
-     * when composed with univariate polynomials (as its variables)
-     * @param   degrees vector of univariate polynomial, name it \f$\vec{d}\f$
-     * @return  a degree \f$D\f$ such that
-     * \f$ D \ge \deg P\circ\vec{Q} \f$ when \f$P\f$ is the current polynomial,
-     * each \f$Q_i\f$ is a univariate polynomial of degree \f$d_i\f$ at most,
-     * and \f$(P\circ\vec{Q})(x) = P(Q_1(x),Q(2),\dots,Q_n(x))\f$
-     */
+/**
+ * @brief   Returns an upper bound for degree of this polynomial
+ * when composed with univariate polynomials (as its variables)
+ * @param   degrees vector of univariate polynomial, name it \f$\vec{d}\f$
+ * @return  a degree \f$D\f$ such that
+ * \f$ D \ge \deg P\circ\vec{Q} \f$ when \f$P\f$ is the current polynomial,
+ * each \f$Q_i\f$ is a univariate polynomial of degree \f$d_i\f$ at most,
+ * and \f$(P\circ\vec{Q})(x) = P(Q_1(x),Q(2),\dots,Q_n(x))\f$
+ */
     PolynomialDegree AcspSummandsPolynomial::AcspConstraintSummand::getDegreeBound(const vector<PolynomialDegree>& inputDegreesBound)const{
         //we return only the degree of the constraint P_i, it uses all inputs but the first.
         //it is assumed the degree of the product of the auxPolys is lower than the degree of Z_S

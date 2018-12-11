@@ -1,6 +1,10 @@
 #ifndef __ACSP_FOR_AES160hashcLOCI_HPP__
 #define __ACSP_FOR_AES160hashcLOCI_HPP__
 
+#include <iostream>
+#include <string>
+#include <string>
+
 #include "languages/Bair/BairInstance.hpp"
 #include "languages/Bair/BairWitness.hpp"
 
@@ -11,6 +15,10 @@
 #define DBGMSG(str) do { } while ( false )
 
 #define EXTDIM 64
+
+using std::cout;
+using std::endl;
+using std::string;
 
 using namespace Algebra;
 

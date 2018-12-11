@@ -60,7 +60,7 @@ class polyAdd_class : public PolynomialInterface {
             // const ttdeg B02_next = ttdeg(inputDegrees[Add::reg::B02 + Add::NUMREGS]);
             
             const ttdeg resTmp = (B00+B01+B02)+(B00_next+B01)+(B01_next+B02);    
-            cout<<resTmp.deg_<<endl;        
+                   
             return PolynomialDegree(resTmp.deg_);
         }
 

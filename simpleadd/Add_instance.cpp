@@ -1,5 +1,6 @@
 #include "Add_instance.hpp"
 
+
 namespace simple_add{
 namespace ACSP_FOR_ADD{
 
@@ -39,14 +40,18 @@ libstark::BairInstance buildBairInstance(const unsigned int t, const unsigned in
 
     const size_t vectorsLen = Add::NUMREGS;
     // const short domainSizeIndicator = Add::getDim(params.length);
-    const short domainSizeIndicator = Add::getDim(t - 1);
+    
     BairInstance::constraintsPtr_t constraints_assignment(new Add_CS());
     BairInstance::constraintsPtr_t constraints_permutation(new empty_CS());
 
     BairInstance::boundaryConstraints_t boundary;
-    // boundary[BairInstance::point_t(0, Add::reg::B00)] = zero();
-    // boundary[BairInstance::point_t(0, Add::reg::B01)] = zero();
-    // boundary[BairInstance::point_t(0, Add::reg::B00)] = Algebra::zero(); // TODO: Need last boundary?
+    boundary[BairInstance::point_t(0, Add::reg::B00)] = zero();
+    boundary[BairInstance::point_t(0, Add::reg::B01)] = zero();
+
+    const unsigned long lastTimestamp = t - 1;
+    const short domainSizeIndicator = (short)Infrastructure::Log2(t);
+    
+    boundary[BairInstance::point_t(lastTimestamp, Add::reg::B02)] = mapIntegerToFieldElement(0, 64, a);
 
     return BairInstance(vectorsLen, 
                         domainSizeIndicator, 

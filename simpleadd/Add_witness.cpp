@@ -24,7 +24,7 @@ namespace ACSP_FOR_ADD{
             public:
                 coloringClass(const unsigned int t, const unsigned int b):
                     // coloring_((size_t(1) << Add::getDim(commonParams.length)) - 1, vector<FieldElement>(Add::NUMREGS)) // coloring_[127][1]                    
-                    coloring_((size_t(1) << Add::getDim(t-1)) - 1 , vector<FieldElement>(Add::NUMREGS)) // coloring_[127][1]                    
+                    coloring_(t , vector<FieldElement>(Add::NUMREGS)) 
                 {                                                             
                     Add::genWitnessAddWithPadding(coloring_, t, b);                    
                 }

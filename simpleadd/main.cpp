@@ -18,11 +18,11 @@ using std::vector;
 
 // t: public input of the fibonacci sequence iterations
 // a: private input of the `t`th number of the fibonacci sequence
-void execute(const unsigned t, const unsigned int a, const unsigned securityParameter) {
+void execute(const unsigned a, const unsigned int b, const unsigned securityParameter) {
     
-    libstark::BairInstance bair_instance = buildBairInstance(t, a);
-    Add::evalp::setParams(a, 1234);
-    libstark::BairWitness bair_witness = buildBairWitness(t, a);
+    libstark::BairInstance bair_instance = buildBairInstance(a, b);
+    Add::evalp::setParams(1234);
+    libstark::BairWitness bair_witness = buildBairWitness(a, b);
 
     std::cout << "verify:" << libstark::BairWitnessChecker::verify(bair_instance, bair_witness) << std::endl;   
     libstark::Protocols::executeProtocol(bair_instance, bair_witness, securityParameter, false, false, true);
@@ -30,14 +30,14 @@ void execute(const unsigned t, const unsigned int a, const unsigned securityPara
 
 int main(int argc, char *argv[]) {
     if(argc != 3) {
-        cout << "please put 2 arguments." << endl;
+        cout << "please pass 2 arguments." << endl;
         return 0;
     }
 
-    const unsigned int t_num(stoul(argv[1]));
-    const unsigned int a_num(stoul(argv[2]));
+    const unsigned int a_num(stoul(argv[1]));
+    const unsigned int b_num(stoul(argv[2]));
     unsigned int securityParameter = 60;
 
-    execute(t_num, a_num, securityParameter);
+    execute(a_num, b_num, securityParameter);
     return 0;
 }

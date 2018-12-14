@@ -52,15 +52,15 @@ class polyAdd_class : public PolynomialInterface {
                 }
             };
 
-            const ttdeg B00 = ttdeg(inputDegrees[Add::reg::B00]);          
-            const ttdeg B00_next = ttdeg(inputDegrees[Add::reg::B00 + Add::NUMREGS]);
-            const ttdeg B01 = ttdeg(inputDegrees[Add::reg::B01]);
-            const ttdeg B01_next = ttdeg(inputDegrees[Add::reg::B01 + Add::NUMREGS]);
-            const ttdeg B02 = ttdeg(inputDegrees[Add::reg::B02]);
-            // const ttdeg B02_next = ttdeg(inputDegrees[Add::reg::B02 + Add::NUMREGS]);
-            
-            const ttdeg resTmp = (B00+B01+B02)+(B00_next+B01)+(B01_next+B02);    
-                   
+            const ttdeg A = ttdeg(inputDegrees[Add::reg::A]);          
+            const ttdeg A_next = ttdeg(inputDegrees[Add::reg::A + Add::NUMREGS]);
+            const ttdeg B = ttdeg(inputDegrees[Add::reg::B]);
+            const ttdeg B_next = ttdeg(inputDegrees[Add::reg::B + Add::NUMREGS]);
+            const ttdeg C = ttdeg(inputDegrees[Add::reg::C]);
+            const ttdeg C_next = ttdeg(inputDegrees[Add::reg::C + Add::NUMREGS]);
+
+            const ttdeg resTmp = (A + B + C) + (A_next + A) + (B_next + B) + (C_next + C);
+
             return PolynomialDegree(resTmp.deg_);
         }
 

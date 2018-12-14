@@ -27,20 +27,21 @@ namespace Add {
 
     class evalp {
         public:
-            static void setParams(const unsigned int, const int);
+            static void setParams(const int);
             static FieldElement ep(const std::vector<FieldElement>&);
         private:
             static unsigned int a_param;            
     };
 
+    const unsigned long lastStep = 3;
     const short NUMREGS = 3;     
 
     namespace reg {
         typedef enum RegType
         {
-            B00 = 0,
-            B01,
-            B02        
+            A = 0,
+            B,
+            C        
         } RegType;
     }
 

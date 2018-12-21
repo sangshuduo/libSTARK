@@ -7,13 +7,7 @@ using namespace Algebra;
 
 namespace Add {      
 
-    #define DBGGET(a,b,c) (a)[(b)][(c)]
-
-    // void SaveRegisters(witnessType arr, size_t t) {
-    //     for (int i = 0; i < NUMREGS; i++) {
-    //         DBGGET(arr, t + 1, i) = arr[t][i];
-    //     }
-    // }
+    #define DBGGET(a,b,c) (a)[(b)][(c)]  
 
     void genWitnessAddWithPadding(witnessType arr, const unsigned int a, const unsigned int b) {                               
         

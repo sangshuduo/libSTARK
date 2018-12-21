@@ -34,7 +34,7 @@ https://github.com/elibensasson/libSTARK/issues/2
 ## How to run the code
 ### Compilation:
 ```
-git clone https://github.com/elibensasson/libSTARK.git
+git clone git@github.com:LayerXcom/libSTARK.git
 cd libSTARK
 make -j8
 ```

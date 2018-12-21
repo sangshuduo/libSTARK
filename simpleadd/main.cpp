@@ -16,8 +16,7 @@ using std::stoul;
 
 using std::vector;
 
-// t: public input of the fibonacci sequence iterations
-// a: private input of the `t`th number of the fibonacci sequence
+// a, b: secret numbers of the initial values of a fibonacci sequence for some sequence length
 void execute(const unsigned a, const unsigned int b, const unsigned securityParameter) {
     
     libstark::BairInstance bair_instance = buildBairInstance(a, b);

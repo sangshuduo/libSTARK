@@ -12,7 +12,7 @@
 #define PRNMSG(str) do { std::cout << str << std::endl; } while( false )
 #define DBGMSG(str) do { } while ( false )
 
-#define EXTDIM 64 // TODO: fix number
+#define EXTDIM 64 
 
 using namespace Algebra;
 
@@ -28,9 +28,7 @@ namespace Add {
     class evalp {
         public:
             static void setParams(const int);
-            static FieldElement ep(const std::vector<FieldElement>&);
-        private:
-            static unsigned int a_param;            
+            static FieldElement ep(const std::vector<FieldElement>&);                   
     };
 
     const unsigned long lastStep = 3;

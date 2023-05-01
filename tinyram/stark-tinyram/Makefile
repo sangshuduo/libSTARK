@@ -4,11 +4,12 @@ INCFLAGS=-Isrc -I$(GADGET3INC) -I$(LIBSTARKINC) -I$(ALGEBRAINC) -I$(FFTINC)
 LIBS=						\
 	gadgetlib				\
 	stark					\
+	omp					\
 	algebralib				\
 	FFT
 
 LIBFLAGS=$(addprefix -l, $(LIBS))
-LNKFLAGS=-L"$(ALGEBRALNKDIR)" -L"$(FFTLIBLNKDIR)" -L"$(GADGET3LNKDIR)" -L"$(LIBSTARKLINKDIR)" -lgomp
+LNKFLAGS=-L"$(ALGEBRALNKDIR)" -L"$(FFTLIBLNKDIR)" -L"$(GADGET3LNKDIR)" -L"$(LIBSTARKLINKDIR)" -L/usr/local/opt/libomp/lib
 
 SRCDIR  = src
 SRCEXT  = cpp

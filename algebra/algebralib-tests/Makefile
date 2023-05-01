@@ -11,11 +11,12 @@ CPPFLAGS+=
 INCFLAGS=-I$(ALGEBRAINC) -I$(FFTINC)
 LIBS=						\
 	algebralib				\
+	omp					\
 	gtest					\
 	FFT
 
 LIBFLAGS=$(addprefix -l, $(LIBS))
-LNKFLAGS=-L"$(ALGEBRALNKDIR)" -L"$(FFTLIBLNKDIR)" -lgomp
+LNKFLAGS=-L"$(ALGEBRALNKDIR)" -L"$(FFTLIBLNKDIR)" -L/usr/local/opt/libomp/lib
 
 TARGET=$(BLDDIR)/algebralib_tests
 

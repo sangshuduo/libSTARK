@@ -7,11 +7,12 @@ DIRNAME				:= $(shell $(WHICH) dirname)
 INCFLAGS=-I. -I$(LIBSTARKINC) -I$(ALGEBRAINC) -I$(FFTINC)
 LIBS=						\
 	stark					\
+	omp					\
 	algebralib				\
 	FFT
 
 LIBFLAGS=$(addprefix -l, $(LIBS))
-LNKFLAGS=-L"$(ALGEBRALNKDIR)" -L"$(FFTLIBLNKDIR)" -L"$(LIBSTARKLINKDIR)" -lgomp
+LNKFLAGS=-L"$(ALGEBRALNKDIR)" -L"$(FFTLIBLNKDIR)" -L"$(LIBSTARKLINKDIR)" -L/usr/local/opt/libomp/lib
 
 SRCDIR  = .
 SRCEXT  = cpp

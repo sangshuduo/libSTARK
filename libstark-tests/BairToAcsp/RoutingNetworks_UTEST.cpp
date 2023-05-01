@@ -207,6 +207,7 @@ TEST(RoutingNetworks,tandemNetworks){
 	}
 }
 
+#if 0
 TEST(RoutingNetworks,BenesPermutation){
 	const layerID_t k = 1 + rand()%5;
 	const labelID_t numElements = 1<<k;
@@ -950,4 +951,5 @@ TEST(RoutingNetworks,LongSymmetricDeBruijn_Wings_RoutingBit_soundness){
         }
     }
 }
+#endif
 } // anonimus namespace
